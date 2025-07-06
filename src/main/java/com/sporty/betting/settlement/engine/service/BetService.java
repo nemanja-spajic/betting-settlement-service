@@ -15,8 +15,4 @@ public class BetService {
   public List<Bet> findBetsByEventId(String eventId) {
     return repository.findByEventId(eventId);
   }
-
-  public void saveBet(Bet bet) {
-    repository.save(bet);
-  }
 }
