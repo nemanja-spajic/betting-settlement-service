@@ -46,7 +46,7 @@ class EventOutcomeControllerTest {
     // WHEN
     mockMvc
         .perform(post("/api/events/outcome").contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(status().isOk());
+        .andExpect(status().isAccepted());
 
     // THEN
     verify(service).publishEventOutcome(dto);

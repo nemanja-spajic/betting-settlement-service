@@ -17,6 +17,6 @@ public class EventOutcomeController {
   @PostMapping("/outcome")
   public ResponseEntity<Void> publishOutcome(@RequestBody @Valid EventOutcomeDto dto) {
     service.publishEventOutcome(dto);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.accepted().build();
   }
 }

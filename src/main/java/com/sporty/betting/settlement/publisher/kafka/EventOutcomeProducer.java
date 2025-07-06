@@ -6,6 +6,7 @@ import static com.sporty.betting.settlement.common.logging.LogCode.FAILED_SERIAL
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sporty.betting.settlement.common.exception.MessageSerializationException;
 import com.sporty.betting.settlement.publisher.dto.EventOutcomeDto;
 import com.sporty.betting.settlement.publisher.mapper.EventOutcomeMapper;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +26,10 @@ public class EventOutcomeProducer {
     try {
       String json = objectMapper.writeValueAsString(EventOutcomeMapper.fromDto(dto));
       kafkaTemplate.send(EVENT_OUTCOMES, dto.eventId(), json);
-
       log.info("{}, topic={}, eventId={}", EVENT_PRODUCED, EVENT_OUTCOMES, dto.eventId());
     } catch (JsonProcessingException e) {
       log.error("{}, topic={}", FAILED_SERIALIZATION, EVENT_OUTCOMES, e);
+      throw new MessageSerializationException("Failed to serialize event outcome", e);
     }
   }
 }

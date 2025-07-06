@@ -1,5 +1,7 @@
 package com.sporty.betting.settlement.common.exception;
 
+import static com.sporty.betting.settlement.common.exception.ErrorCode.SERIALIZATION_ERROR;
+
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,18 @@ public class GlobalExceptionHandler {
                 apiError.addFieldError(fieldError.getField(), fieldError.getDefaultMessage()));
 
     return ResponseEntity.badRequest().body(apiError);
+  }
+
+  @ExceptionHandler(MessageSerializationException.class)
+  public ResponseEntity<ApiError> handleMessageSerializationException(
+      MessageSerializationException ex) {
+    ApiError apiError =
+        new ApiError(
+            HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+            "Failed to serialize message",
+            SERIALIZATION_ERROR);
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiError);
   }
 
   @ExceptionHandler(ConstraintViolationException.class)

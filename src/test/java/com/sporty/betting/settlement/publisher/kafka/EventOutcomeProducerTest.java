@@ -1,5 +1,6 @@
 package com.sporty.betting.settlement.publisher.kafka;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -7,6 +8,7 @@ import static org.mockito.Mockito.verifyNoInteractions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sporty.betting.settlement.common.exception.MessageSerializationException;
 import com.sporty.betting.settlement.publisher.dto.EventOutcomeDto;
 import com.sporty.betting.settlement.publisher.fixtures.EventOutcomeDtoMother;
 import com.sporty.betting.settlement.publisher.mapper.EventOutcomeMapper;
@@ -43,15 +45,17 @@ class EventOutcomeProducerTest {
   }
 
   @Test
-  void sendEventOutcome_whenSerializationFails_thenLogsErrorAndDoesNotSend() throws Exception {
+  void sendEventOutcome_whenSerializationFails_thenThrowsJsonProcessingException()
+      throws Exception {
     // GIVEN
     given(objectMapper.writeValueAsString(any()))
         .willThrow(new JsonProcessingException("Serialization error") {});
 
-    // WHEN
-    producer.sendEventOutcome(validDto);
+    // WHEN / THEN
+    assertThatThrownBy(() -> producer.sendEventOutcome(validDto))
+        .isInstanceOf(MessageSerializationException.class)
+        .hasMessageContaining("Failed to serialize event outcome");
 
-    // THEN
     verify(objectMapper).writeValueAsString(EventOutcomeMapper.fromDto(validDto));
     verifyNoInteractions(kafkaTemplate);
   }
