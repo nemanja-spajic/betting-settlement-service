@@ -23,9 +23,9 @@ public class BetSettlementProducer {
       BetSettlementRocketMessage msg = BetSettlementMapper.fromBet(bet);
       String json = objectMapper.writeValueAsString(msg);
 
-      log.info("{}, json={}", ROCKETMQ_SETTLING_BET, json);
+      log.info("[ROCKETMQ_MOCK] {}, json={}", ROCKETMQ_SETTLING_BET, json);
     } catch (JsonProcessingException e) {
-      log.error("{}, rocketMq", FAILED_SERIALIZATION, e);
+      log.error("[ROCKETMQ_MOCK] {}, rocketMq", FAILED_SERIALIZATION, e);
     }
   }
 }
