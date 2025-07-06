@@ -61,13 +61,6 @@ public class EventOutcomeDtoMother {
         return toJson(withNullEventId());
     }
 
-    public static String withNullEventNameJson() {
-        return toJson(withNullEventName());
-    }
-
-    public static String withNullWinnerIdJson() {
-        return toJson(withNullWinnerId());
-    }
 
     private static String toJson(EventOutcomeDto dto) {
         try {
