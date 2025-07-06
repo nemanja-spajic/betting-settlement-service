@@ -1,0 +1,11 @@
+package com.sporty.betting.settlement.common.logging;
+
+public enum LogCode {
+  EVENT_PRODUCED,
+  EVENT_PROCESSED,
+  FAILED_DESERIALIZATION,
+  FAILED_SERIALIZATION,
+  BET_WON_SENDING_TO_ROCKETMQ,
+  BET_LOST_SKIPPING,
+  ROCKETMQ_SETTLING_BET
+}
