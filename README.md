@@ -15,18 +15,6 @@ This service simulates sports betting event outcomes and bet settlement using **
 
 ---
 
-## 📦 Project Structure
-
-- `controller` – REST API for submitting event outcomes
-- `kafka` – Kafka producer, consumer, topic constants
-- `rocketmq` – Mock RocketMQ producer (logs messages)
-- `model`, `repository` – Bet entity and JPA storage
-- `service` – Matching logic and orchestration
-- `logging` – Structured log codes
-- `docker/` – Docker environment for Kafka
-
----
-
 ## 🚀 Getting Started
 
 ### 1. Clone the project

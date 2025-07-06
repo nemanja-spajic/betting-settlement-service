@@ -24,7 +24,7 @@ public class EventOutcomeProducer {
   public void sendEventOutcome(EventOutcomeDto dto) {
     try {
       String json = objectMapper.writeValueAsString(EventOutcomeMapper.fromDto(dto));
-      kafkaTemplate.send(EVENT_OUTCOMES, json);
+      kafkaTemplate.send(EVENT_OUTCOMES, dto.eventId(), json);
 
       log.info("{}, topic={}, eventId={}", EVENT_PRODUCED, EVENT_OUTCOMES, dto.eventId());
     } catch (JsonProcessingException e) {
