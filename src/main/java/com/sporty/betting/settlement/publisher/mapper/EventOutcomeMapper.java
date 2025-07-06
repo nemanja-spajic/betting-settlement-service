@@ -5,9 +5,7 @@ import com.sporty.betting.settlement.publisher.dto.EventOutcomeDto;
 
 public class EventOutcomeMapper {
 
-  private EventOutcomeMapper() {
-    // Private constructor to prevent instantiation
-  }
+  private EventOutcomeMapper() {}
 
   public static EventOutcomeKafkaMessage fromDto(EventOutcomeDto dto) {
     return new EventOutcomeKafkaMessage(dto.eventId(), dto.eventName(), dto.eventWinnerId());

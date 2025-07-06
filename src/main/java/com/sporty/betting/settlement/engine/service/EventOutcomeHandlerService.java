@@ -6,7 +6,6 @@ import static com.sporty.betting.settlement.common.logging.LogCode.BET_WON_SENDI
 import com.sporty.betting.settlement.common.kafka.message.EventOutcomeKafkaMessage;
 import com.sporty.betting.settlement.engine.model.Bet;
 import com.sporty.betting.settlement.engine.rocketmq.BetSettlementProducer;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,14 +19,24 @@ public class EventOutcomeHandlerService {
   private final BetSettlementProducer betSettlementProducer;
 
   public void processEventOutcome(EventOutcomeKafkaMessage message) {
-    List<Bet> bets = betService.findBetsByEventId(message.eventId());
-    for (Bet bet : bets) {
-      if (bet.getEventWinnerId().equals(message.eventWinnerId())) {
-        log.info("{}, betId={}", BET_WON_SENDING_TO_ROCKETMQ, bet.getId());
-        betSettlementProducer.sendSettlement(bet);
-      } else {
-        log.info("{}, betId={}", BET_LOST_SKIPPING, bet.getId());
-      }
-    }
+    betService
+        .findBetsByEventId(message.eventId())
+        .forEach(
+            bet -> {
+              if (bet.getEventWinnerId().equals(message.eventWinnerId())) {
+                processWon(bet);
+              } else {
+                processLoss(bet);
+              }
+            });
+  }
+
+  private void processWon(Bet bet) {
+    log.info("{}, betId={}", BET_WON_SENDING_TO_ROCKETMQ, bet.getId());
+    betSettlementProducer.sendSettlement(bet);
+  }
+
+  private void processLoss(Bet bet) {
+    log.info("{}, betId={}", BET_LOST_SKIPPING, bet.getId());
   }
 }

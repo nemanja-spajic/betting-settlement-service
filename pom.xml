@@ -28,7 +28,12 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<lombok.version>1.18.30</lombok.version>
+		<maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+		<spotless.plugin.version>2.37.0</spotless.plugin.version>
+		<google.java.format.version>1.17.0</google.java.format.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,7 +67,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
+			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -83,13 +88,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
+				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.30</version>
+							<version>${lombok.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
@@ -109,11 +114,11 @@
 			<plugin>
 				<groupId>com.diffplug.spotless</groupId>
 				<artifactId>spotless-maven-plugin</artifactId>
-				<version>2.37.0</version>
+				<version>${spotless.plugin.version}</version>
 				<configuration>
 					<java>
 						<googleJavaFormat>
-							<version>1.17.0</version>
+							<version>${google.java.format.version}</version>
 						</googleJavaFormat>
 					</java>
 				</configuration>

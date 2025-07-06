@@ -8,9 +8,7 @@ public class EventOutcomeDtoMother {
 
   private static final ObjectMapper objectMapper = new ObjectMapper();
 
-  private EventOutcomeDtoMother() {
-    // prevent instantiation
-  }
+  private EventOutcomeDtoMother() {}
 
   public static EventOutcomeDto valid() {
     return EventOutcomeDto.builder()
