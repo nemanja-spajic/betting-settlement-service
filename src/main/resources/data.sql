@@ -1,4 +1,11 @@
 INSERT INTO bets (id, user_id, event_id, event_market_id, event_winner_id, bet_amount) VALUES
-   ('e3c5973a-8248-4c9c-8ec2-1c23b8c2c3d9', 'user-1', 'match-001', 'market-001', 'team-a', 50.00),
-   ('f4d8b942-3481-4cf1-84b8-dbc1184b989c', 'user-2', 'match-001', 'market-002', 'team-b', 30.00),
-   ('e876a2b5-2d8a-4f5c-9dfb-55e5a6c3b8d3', 'user-3', 'match-002', 'market-001', 'team-x', 75.00);
+    ('11111111-1111-1111-1111-111111111111', 'user-46', 'motogp-assen-2025', 'race-winner', 'fabio-quartararo', 100.00);
+
+INSERT INTO bets (id, user_id, event_id, event_market_id, event_winner_id, bet_amount) VALUES
+    ('22222222-2222-2222-2222-222222222222', 'user-93', 'motogp-assen-2025', 'race-winner', 'marc-marquez', 150.00);
+
+INSERT INTO bets (id, user_id, event_id, event_market_id, event_winner_id, bet_amount) VALUES
+    ('33333333-3333-3333-3333-333333333333', 'user-1', 'wimbledon-2025-final', 'match-winner', 'novak-djokovic', 200.00);
+
+INSERT INTO bets (id, user_id, event_id, event_market_id, event_winner_id, bet_amount) VALUES
+    ('44444444-4444-4444-4444-444444444444', 'user-2', 'wimbledon-2025-final', 'match-winner', 'carlos-alcaraz', 150.00);
