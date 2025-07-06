@@ -1,5 +1,5 @@
 HELP.md
-target/
+/target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -30,7 +30,7 @@ hs_err_pid*
 replay_pid*
 
 ### IntelliJ IDEA ###
-.idea
+/.idea/
 *.iws
 *.iml
 *.ipr
