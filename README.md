@@ -40,6 +40,13 @@ This runs:
 
 ### 3. Run the Spring Boot app
 
+Make sure your `JAVA_HOME` points to Java 21:
+
+```bash
+export JAVA_HOME=/path/to/java-21
+```
+
+
 You can run it from your IDE or via Maven:
 
 ```bash
